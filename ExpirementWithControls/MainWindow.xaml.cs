@@ -24,5 +24,33 @@ namespace ExpirementWithControls
         {
             InitializeComponent();
         }
+
+        private void numberTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Number.Text = numberTextBox.Text;
+        }
+
+        private void numberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !int.TryParse(e.Text, out int result);
+        }
+
+        private void smallSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Number.Text = smallSlider.Value.ToString("0");
+        }
+
+        private void bigSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Number.Text = bigSlider.Value.ToString("000-000-0000");
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            if (sender is RadioButton radioButton)
+            {
+                Number.Text = radioButton.Content.ToString();
+            }
+        }
     }
 }
